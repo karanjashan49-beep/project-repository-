@@ -1,11 +1,8 @@
 FROM amazonlinux:latest
 
-RUN yum install -y httpd zip unzip && yum clean all
+RUN yum install -y httpd zip unzip 
 
 WORKDIR /var/www/html
-
-ADD https://templated.live/hielo/download/hielo.zip /tmp/hielo.zip
-RUN unzip /tmp/hielo.zip -d /var/www/html && rm -f /tmp/hielo.zip
 
 EXPOSE 83
 
