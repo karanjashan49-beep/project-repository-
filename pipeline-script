@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: '
+            }
+        }
+
+        stage('Deploy LMS') {
+            steps {
+                script {
+                    sh "chmod +x index.html"
+                    sh "./index.html"
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo "SUCCESS: Access your portal at http://localhost:8003"
+        }
+        failure {
+            echo "FAILURE: Deployment failed. Checking container logs..."
+            sh "sudo podman ps -a | grep lms-webserver || echo 'No container found.'"
+        }
+    }
+}
