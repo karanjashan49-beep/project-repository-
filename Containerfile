@@ -5,7 +5,7 @@ IMAGE_NAME="lms-image"
 PORT=8004
 
 echo "--- 1. Building Image ---"
-sudo podman build -t $IMAGE_NAME:latest -f Containerfile .
+sudo podman build -t amazonlinux:latest -f Containerfile .
 
 echo "--- 2. Cleaning Old Container ---"
 sudo podman stop $APP_NAME || true
