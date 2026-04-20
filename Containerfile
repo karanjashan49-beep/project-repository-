@@ -7,7 +7,9 @@ PORT=8004
 
 echo "--- 1. Building Image ---"
 sudo podman build -t $IMAGE_NAME:latest -f Containerfile .
-
+echo "--- 2. Cleaning Old Container ---"
+sudo podman stop $APP_NAME || true
+sudo podman rm $APP_NAME || true
 
 echo "--- 3. Starting New Container ---"
 sudo podman run -d --name $APP_NAME -p $PORT:80 $IMAGE_NAME:latest
