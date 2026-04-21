@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: '
+                git branch: 'main', url: 'https://github.com/Manilehra09/lmsportal-jenkins.git'
             }
         }
 
         stage('Deploy LMS') {
             steps {
                 script {
-                    sh "chmod +x index.html"
-                    sh "./index.html"
+                    sh "chmod +x deploy.sh"
+                    sh "./deploy.sh"
                 }
             }
         }
