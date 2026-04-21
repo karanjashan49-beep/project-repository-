@@ -1,0 +1,2 @@
+sudo podman build -t website:h4 -f httpd:alpine
+copy . /usr/local/apache2/htdocs/ 
