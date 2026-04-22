@@ -1,5 +1,5 @@
 FROM amazonlinux:latest
 RUN yum install httpd -y && yum clean all
 EXPOSE 81
-RUN echo "This is success" /var/www/html/index.html
+RUN echo "This is success" >> /var/www/html/index.html
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
