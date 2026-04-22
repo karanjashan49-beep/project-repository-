@@ -17,7 +17,7 @@ pipeline {
 
             stage('Run Container') {
               steps {
-                sh 'podman run -d -p 8085:80 car:v2 
+                sh 'podman run -d -p 8085:80 car:v2'
              }
         }
     }
