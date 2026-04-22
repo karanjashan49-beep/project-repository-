@@ -8,23 +8,18 @@ pipeline {
             }
         }
 
-        stage('Deploy LMS') {
+        stage('Build') {
             steps {
-                script {
-                    sh "chmod +x deploy.sh"
-                    sh "./deploy.sh"
+                    sh 'ls -la'
+                    sh 'podman build -t car:v2 -f Containerfile .'
                 }
             }
-        }
-    }
-    
-    post {
-        success {
-            echo "SUCCESS: Access your portal at http://localhost:8003"
-        }
-        failure {
-            echo "FAILURE: Deployment failed. Checking container logs..."
-            sh "sudo podman ps -a | grep lms-webserver || echo 'No container found.'"
+
+            stage('Run Container') {
+              steps {
+                sh 'podman run -d -p 8085:80 car:v2 
+             }
         }
     }
 }
+
